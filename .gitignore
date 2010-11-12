@@ -1,0 +1,9 @@
+*.pyc
+*.vim
+*.swp
+*.sqlite
+*~
+.DS_Store
+pip-log.txt
+media/original
+media/pieces

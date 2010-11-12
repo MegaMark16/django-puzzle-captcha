@@ -1,0 +1,7 @@
+[attr]binary -crlf -diff -merge
+*.jpg binary
+*.idml binary
+*.png binary
+*.gif binary
+*.swf binary
+*.air binary

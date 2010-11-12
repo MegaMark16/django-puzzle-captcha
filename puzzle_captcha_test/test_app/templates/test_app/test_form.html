@@ -1,0 +1,19 @@
+{% load thumbnail %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us" >
+<head>
+<title>Puzzle Captcha</title>
+<link rel="stylesheet" type="text/css" href="/adminmedia/css/forms.css" />
+<script type="text/javascript" src="{{ MEDIA_URL }}jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}jquery.jqueryui.min.js"></script>
+</head>
+<body>
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+</body>
+</html>
+
