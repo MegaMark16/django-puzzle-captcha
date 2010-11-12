@@ -8,12 +8,13 @@ The first step is to load in images to be used as puzzles.  This can be done eit
 
 The second step is to add a PuzzleCaptchaField to your form, like so:
 
-``
+
+::
 from django import forms
 from puzzle_captcha.fields import PuzzleCaptchaField
 
+::
 class MyForm(forms.Form):
     captcha = PuzzleCaptchaField()  
-``        
 
 That's pretty much it.
