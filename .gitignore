@@ -5,5 +5,5 @@
 *~
 .DS_Store
 pip-log.txt
-media/original
-media/pieces
+puzzle_captcha_test/media/originals/*
+puzzle_captcha_test/media/pieces/*
