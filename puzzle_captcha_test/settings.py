@@ -92,7 +92,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
-    'django_evolution',
     'sorl.thumbnail',
     'puzzle_captcha',    
     'test_app',

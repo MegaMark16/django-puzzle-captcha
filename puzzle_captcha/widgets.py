@@ -27,19 +27,60 @@ function updatePuzzleOutput() {
     $('#puzzle_captcha_output').val('{' + output + '}');
 }
 
+function updatePieceOrder() {
+    var looper = 1;
+    $(".piece input").each(function() {
+        $(this).val(looper);
+        looper+=1;
+    });
+}
+
+function swapNodes(a, b) {
+    var aparent = $(a).parent();
+    var aPosition = parseInt($(a).next().val());
+    var bPosition = parseInt($(b).next().val());
+    if (aPosition != bPosition) {
+        if (aPosition < bPosition) {
+            $(b).parent().insertBefore(aparent);
+        }
+        else {
+            $(b).parent().insertAfter(aparent);
+        }
+    }
+}
+
 $(document).ready(function() {
     updatePuzzleOutput();
+    updatePieceOrder();
+    
+    $(".puzzle .piece img").click(function() { 
+        var currentlySelectedPiece = $(".puzzle .piece img.selected");
+        if ($(currentlySelectedPiece).length > 0) {
+            swapNodes(this, currentlySelectedPiece);
+            $(currentlySelectedPiece).removeClass("selected");
+            updatePieceOrder();
+            updatePuzzleOutput();
+        }
+        else {
+            $(this).addClass("selected");
+        }
+    });
+    
+    if ($(".puzzle").sortable) {
     $(".puzzle").sortable({ 
+            start: function() {
+                $(".puzzle .piece img.selected").removeClass("selected");
+            },
+            stop: function() {
+                setTimeout('$(".puzzle .piece img.selected").removeClass("selected")', 10);
+            },            
 		    update: function() {
-		        var looper = 1;
-		        $(".piece input").each(function() {
-		            $(this).val(looper);
-		            looper+=1;
-		        });
+		        updatePieceOrder();
 		        updatePuzzleOutput();
 		    },
 		});
-});
+		}
+    });
 </script>
 <style>
 .puzzle {
@@ -48,7 +89,13 @@ $(document).ready(function() {
 
 .piece {
     list-style: none;
-    margin-bottom:-3px;
+    margin-bottom: -4px;
+}
+.puzzle .piece img {
+    border: thin solid white;
+}
+.puzzle .piece img.selected {
+    border: thin solid blue;
 }
 </style>
 <input type="hidden" id="puzzle_key" name="puzzle_key" value="%(puzzle_key)s" />
