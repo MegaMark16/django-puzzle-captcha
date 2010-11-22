@@ -6,7 +6,7 @@ The captcha is unique in that it is an image split up into different pieces like
 
 Using this field has two parts.  
 
-The first step is to load in images to be used as puzzles.  This can be done either through the admin interface or through "python manage.py load_images <path_to_folder_containing_images>".
+The first step is to load in images to be used as puzzles.  This can be done either through the admin interface or through the built in load_images management command:
 
 ::
 
