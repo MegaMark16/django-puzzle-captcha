@@ -4,16 +4,18 @@ Django Puzzle Captcha is a Form Field for django forms that adds a special type 
 
 The captcha is unique in that it is an image split up into different pieces like a puzzle, and it uses javascript to allow the user to drag and drop the pieces of the puzzle to put them in the correct order.
 
-Using this field has two parts.  
+Using this field has three parts.  
 
-The first step is to load in images to be used as puzzles.  This can be done either through the admin interface or through the built in load_images management command:
+1. Add "puzzle_captcha" to your installed apps and run the "syncdb" management command to setup the required database tables.
+
+2. Load in images to be used as puzzles.  This can be done either through the admin interface or through the built in load_images management command:
 
 ::
 
     python manage.py load_images <path_to_folder_containing_images>    
 
 
-The second step is to add a PuzzleCaptchaField to your form, like so:
+3. Add a PuzzleCaptchaField to your form, like so:
 
 ::
 
