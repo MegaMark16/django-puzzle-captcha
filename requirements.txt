@@ -1,4 +1,6 @@
-django
-sorl-thumbnail
-PIL
-simplejson
+Django==1.4.7
+PIL==1.1.7
+argparse==1.2.1
+simplejson==3.6.4
+sorl-thumbnail==11.12
+wsgiref==0.1.2
