@@ -1,5 +1,4 @@
-import simplejson
-
+import json
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.forms import fields, ValidationError
@@ -12,7 +11,7 @@ class PuzzleCaptchaField(fields.Field):
     
     def clean(self, value):
         try:
-            values = simplejson.loads(value)
+            values = json.loads(value)
             print values
             puzzle = Puzzle.objects.get(key=values['puzzle_key'])
             looper = 1

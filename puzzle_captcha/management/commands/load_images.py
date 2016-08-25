@@ -7,19 +7,19 @@ class Command(BaseCommand):
     args = '<path_to_images_folder ...>'
     help = 'Loads all the images from the folder specified into the Puzzle Captcha library'
 
+    def add_arguments(self, parser):
+        parser.add_argument('path')
+
     def handle(self, *args, **options):
-        if args:
-            path = args[0]
-            files = os.listdir(path)
-            for filename in files:
-                print "Loading %s..." % filename
-                create_puzzle(path, filename)
-                try:
-                    pass
-                except Exception as ex:
-                    print ex    
-        else:
-            raise CommandError('Please provide a valid path to the folder that contains your images.')    
+        path = options['path']
+        files = os.listdir(path)
+        for filename in files:
+            print "Loading %s..." % filename
+            create_puzzle(path, filename)
+            try:
+                pass
+            except Exception as ex:
+                print ex    
         
         
                     
@@ -33,5 +33,5 @@ def create_puzzle(directory, filename):
     except Exception as ex:
         if puzzle.id:
             puzzle.delete()
-        print ex
+        print 'An error occurred: %s' % ex
 

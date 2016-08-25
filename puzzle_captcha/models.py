@@ -1,4 +1,4 @@
-import Image
+from PIL import Image
 import hashlib
 import datetime
 import random
@@ -24,7 +24,7 @@ class Puzzle(models.Model):
     def create_pieces(self):
         image = Image.open(self.image.path)
         image.thumbnail((400, 400), Image.ANTIALIAS)
-        self.key = hashlib.sha1(image.tostring()).hexdigest()
+        self.key = hashlib.sha1(image.tobytes()).hexdigest()
         """
         if image.size[0] < image.size[1]:
             cols = 2
@@ -47,7 +47,7 @@ class Puzzle(models.Model):
                 subimage_io = StringIO()
                 subimage.save(subimage_io, 'JPEG')
                 subimage_io.seek(0)
-                key = hashlib.sha1(subimage.tostring()).hexdigest()
+                key = hashlib.sha1(subimage.tobytes()).hexdigest()
                 looper += 1
                 piece = PuzzlePiece(key=key, order=looper, puzzle=self)
                 filename = '%s.jpg' % key
